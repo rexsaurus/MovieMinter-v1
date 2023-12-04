@@ -66,6 +66,10 @@ export default {
 
 
   .nav-list {
+    display: flex; /* Establishes a flex container */
+    align-items: center; /* Vertically centers the flex items (the <li> elements) within the container */
+    justify-content: space-around; 
+    
     list-style: none;
     display: flex;
     margin: 0;
