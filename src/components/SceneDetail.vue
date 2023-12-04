@@ -1,59 +1,29 @@
 <template>
   <div class="scene-detail-container">
     <div class="scene-detail-header">
-      <h2>Scene Detail</h2>
+      <h2>{{ scene.segment }}</h2> <!-- Assuming 'segment' can be used as a scene number -->
       <button class="close-button" @click="closeForm">X</button>
     </div>
-    <form @submit.prevent="mintScene">
-      <div class="form-group">
-        <label for="scene-description">Scene Description</label>
-        <textarea id="scene-description" v-model="scene.description" rows="3"></textarea>
+    <div class="scene-content">
+      <img :src="scene.imagePath" class="scene-thumbnail" alt="Movie Scene" />
+      <div class="scene-description">
+        <p>In this scene, the character</p>
+        <p>{{ scene.description }}</p>
+        <p>Est. Processing time: {{ scene.estProcessingTime }}</p>
       </div>
-      <div class="form-group">
-        <label for="characters">Characters</label>
-        <input id="characters" v-model="scene.characters" type="text">
-      </div>
-      <div class="form-group">
-        <label for="prompt">Prompt</label>
-        <input id="prompt" v-model="scene.prompt" type="text">
-      </div>
-      <div class="form-group half-width">
-        <label for="est-value">Est. Value</label>
-        <input id="est-value" v-model="scene.estValue" type="text">
-      </div>
-      <div class="form-group half-width">
-        <label for="est-mint-time">Est. Mint Time</label>
-        <input id="est-mint-time" v-model="scene.estMintTime" type="text">
-      </div>
-      <div class="form-group">
-        <button type="submit" class="mint-button">Mint</button>
-      </div>
-    </form>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      scene: {
-        description: '',
-        characters: '',
-        prompt: '',
-        estValue: '',
-        estMintTime: ''
-      }
-    };
+  props: {
+    scene: Object // Accept a scene object instead of just imagePath
   },
   methods: {
     closeForm() {
-      // Logic to close the form, for example, emitting an event or changing a v-if condition
+      // Emit an event to signal the parent component to close the detail view
       this.$emit('close');
-    },
-    mintScene() {
-      // Logic to handle the minting of the scene
-      console.log('Minting scene:', this.scene);
-      // You would typically send this data to a server or blockchain transaction
     }
   }
 };
@@ -61,47 +31,41 @@ export default {
 
 <style scoped>
 .scene-detail-container {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  position: relative;
-  background: white;
-  color: black;
-  width: 400px; /* Set your desired width */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  /* ... styles from the original code ... */
+  max-width: none; /* Allow the container to expand to fit content */
+  margin: auto; /* Center the container */
 }
 
 .scene-detail-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* ... styles from the original code ... */
+  padding: 0.5rem 1rem; /* Add padding around the header */
+  background-color: #f2f2f2; /* Light grey background for the header */
 }
 
-.close-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-}
+/* Rest of the styles from the original code */
 
-.form-group {
-  margin-bottom: 1rem;
-}
-
-.form-group.half-width {
-  display: inline-block;
-  width: calc(50% - 0.5rem);
-}
-
+/* New style for the mint button to match the image */
 .mint-button {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
+  /* ... styles from the original code ... */
+  width: 100%; /* Make the button full width */
+  font-size: 1.25rem; /* Increase the font size */
 }
 
-/* Add additional styling as needed */
+
+  .scene-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .scene-thumbnail {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .scene-description p {
+    text-align: center;
+    margin: 0.5rem 0;
+  }
 </style>

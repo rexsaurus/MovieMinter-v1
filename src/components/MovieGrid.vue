@@ -6,7 +6,7 @@
         :key="index"
         :imagePath="getImagePath(movie.segment)" 
         :isMint="movie.isMint"
-        @click="openSceneDetail(movie)"
+        @squareClicked="openSceneDetail(movie)"
       />
     </div>
     <div class="scene-detail-popup" v-if="isSceneDetailVisible">
@@ -43,7 +43,7 @@
     },
     methods: {
       openSceneDetail(movie) {
-        this.selectedScene = movie;
+        this.selectedScene = { movie, imagePath: this.getImagePath(movie.segment) };
         this.isSceneDetailVisible = true;
       },
       getImagePath(segment) {
@@ -52,6 +52,7 @@
     },
   };
 </script>
+
 
 <style scoped>
   .movie-grid-container {

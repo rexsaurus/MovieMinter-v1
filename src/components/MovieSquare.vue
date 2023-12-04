@@ -3,18 +3,13 @@
     :class="['movie-square', { 'mint': isMint }]"
     @mouseover="isMint && highlight()"
     @mouseleave="isMint && unhighlight()"
-    @click="playMovieSegment"
+    @click="$emit('squareClicked')"
   >
     <!-- Image or video content goes here -->
     <img :src="imagePath" class="scene-thumbnail" alt="Movie Scene" />
-    
-    <!-- Conditionally render "MINT" text for isMint = false -->
+    <!-- Conditional rendering based on isMint -->
     <div v-if="!isMint" class="mint-text">MINT</div>
-
-
-    <!-- Conditionally render "unavailable" text for isMint = true -->
     <div v-if="isMint" class="unavailable-text">unavailable</div>
-    
   </div>
 </template>
 
