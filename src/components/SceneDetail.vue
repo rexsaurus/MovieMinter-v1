@@ -64,6 +64,8 @@ export default {
   border: 1px solid #ccc;
   padding: 1rem;
   position: relative;
+  background: white;
+  color:black;
 }
 
 .scene-detail-header {
