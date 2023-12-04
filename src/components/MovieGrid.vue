@@ -35,7 +35,9 @@
           { isMint: true, segment: 'scene_3' },
           { isMint: false, segment: 'scene_4' },
           { isMint: true, segment: 'scene_5' },
-          { isMint: false, segment: 'scene_6' }
+          { isMint: false, segment: 'scene_6' },
+          { isMint: true, segment: 'scene_7' },
+          { isMint: false, segment: 'scene_8' }
         ],
         isSceneDetailVisible: false,
         selectedScene: null,
@@ -69,13 +71,11 @@
 
   .scene-detail-popup {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    height:100%;
+    width:100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: transparent; /* Semi-transparent background */
   }
 </style>
