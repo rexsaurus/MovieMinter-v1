@@ -13,6 +13,8 @@ import WalletConnector from './components/WalletConnector.vue'
   <main>
     <MovieGrid />
   </main>
+
+  <footer>© Taroko Research 2024</footer>
 </template>
 
 <style scoped>
@@ -49,6 +51,9 @@ import WalletConnector from './components/WalletConnector.vue'
       align-items: center;
     }
   }
-
+  footer {
+    
+  }
+  
 
 </style>
