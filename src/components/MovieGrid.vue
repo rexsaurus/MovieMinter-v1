@@ -30,22 +30,12 @@ export default {
   data() {
     return {
       movies: [
-        { isMint: true, segment: 'segment1.mp4' },
-        { isMint: false, segment: 'segment2.mp4' },
-        { isMint: true, segment: 'segment1.mp4' },
-        { isMint: false, segment: 'segment2.mp4' },
-        { isMint: true, segment: 'segment1.mp4' },
-        { isMint: false, segment: 'segment2.mp4' },
-        { isMint: true, segment: 'segment1.mp4' },
-        { isMint: false, segment: 'segment2.mp4' },
-        { isMint: true, segment: 'segment1.mp4' },
-        { isMint: false, segment: 'segment2.mp4' },
-        { isMint: true, segment: 'segment1.mp4' },
-        { isMint: false, segment: 'segment2.mp4' },
-        { isMint: true, segment: 'segment1.mp4' },
-        { isMint: false, segment: 'segment2.mp4' },
-        { isMint: true, segment: 'segment1.mp4' },
-        { isMint: false, segment: 'segment2.mp4' }
+        { isMint: true, segment: 'scene_1' },
+        { isMint: false, segment: 'scene_2' },
+        { isMint: true, segment: 'scene_3' },
+        { isMint: false, segment: 'scene_4' },
+        { isMint: true, segment: 'scene_5' },
+        { isMint: false, segment: 'scene_6' }
         // ...more movie objects
       ],
       isSceneDetailVisible: false,
