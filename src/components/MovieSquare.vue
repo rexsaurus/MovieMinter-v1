@@ -49,7 +49,6 @@ export default {
     transition: border-color 0.3s ease; /* Smooth transition for border color */
 
     /* Default background image and opacity */
-    background-image: url('./assets/film_icon.png');
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;

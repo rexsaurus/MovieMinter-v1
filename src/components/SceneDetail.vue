@@ -65,7 +65,10 @@ export default {
   padding: 1rem;
   position: relative;
   background: white;
-  color:black;
+  color: black;
+  width: 400px; /* Set your desired width */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
 .scene-detail-header {
@@ -78,6 +81,7 @@ export default {
   border: none;
   background: none;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .form-group {
@@ -92,6 +96,11 @@ export default {
 .mint-button {
   padding: 0.5rem 1rem;
   cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
 }
 
 /* Add additional styling as needed */
