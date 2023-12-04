@@ -2,7 +2,11 @@
   <nav>
     <ul class="nav-list">
       <li class="nav-item" v-for="link in navLinks" :key="link.text">
-        <router-link :to="link.to" class="nav-link">{{ link.text }}</router-link>
+        <router-link :to="link.to"
+                     class="nav-link"
+                     :class="{ 'connect-button': link.text === 'Connect' }">
+          {{ link.text }}
+        </router-link>
       </li>
     </ul>
   </nav>
@@ -61,6 +65,18 @@ export default {
   .nav-link:hover {
     color: #42b983;
     border-color: #42b983; /* Change border color on hover */
+  }
+
+  .connect-button {
+    background-color: orange; /* Sets the background color to orange */
+    color: white; /* Sets the text color to white for contrast */
+    border: 1px solid orange; /* Sets the border color to match the background */
+  }
+
+  /* Hover state for the connect button */
+  .connect-button:hover {
+    background-color: darkorange; /* Darkens the button on hover for a visual effect */
+    border-color: darkorange; /* Matches the border color to the background on hover */
   }
 
 </style>
