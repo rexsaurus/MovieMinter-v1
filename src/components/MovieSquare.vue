@@ -43,7 +43,7 @@ export default {
     background-color: #f0f0f0; /* Example background color */
     position: relative;
     width: 100%;
-    height: 85px; /* Fixed height */
+    height: 120px; /* Fixed height */
     border: 1px solid transparent; /* Default border set to transparent */
     cursor: pointer; /* Changes the cursor to a pointer on hover */
     transition: border-color 0.3s ease; /* Smooth transition for border color */
