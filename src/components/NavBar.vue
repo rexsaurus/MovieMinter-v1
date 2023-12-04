@@ -18,6 +18,7 @@ export default {
         { text: 'Script', to: '/script' },
         { text: 'Director', to: '/director' },
         { text: 'Prompt', to: '/prompt' },
+        { text: 'Connect', to: '/connect' },
       ],
     };
   },
@@ -25,25 +26,38 @@ export default {
 </script>
 
 <style scoped>
-.nav-list {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
+  header {
+    /* Assuming you have a header tag */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
-.nav-item {
-  margin-right: 1rem;
-}
 
-.nav-link {
-  text-decoration: none;
-  color: #333;
-  padding: 0.5rem 1rem;
-  transition: color 0.3s ease;
-}
+  .nav-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1; /* Added to push the logo and nav items to opposite ends */
+    justify-content: flex-end; /* Align nav items to the right */
+  }
 
-.nav-link:hover {
-  color: #42b983;
-}
+  .nav-item {
+    margin-right: 1rem;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: white; /* Changed color to white */
+    padding: 0.5rem 1rem;
+    border: 1px solid white; /* Added border around the text */
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #42b983;
+    border-color: #42b983; /* Change border color on hover */
+  }
+
 </style>

@@ -40,6 +40,7 @@ export default {
     padding-top: 25%; /* Height as a percentage of width */
     position: relative;
     width: 100%;
+    height: 85px;
   }
 
 .movie-square.mint:hover {
