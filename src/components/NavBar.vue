@@ -13,6 +13,11 @@
 </template>
 
 <script>
+  import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
+  import { Web3Modal } from '@web3modal/html';
+  import { configureChains, createConfig } from '@wagmi/core';
+  import { arbitrum, mainnet, polygon } from 'viem/chains';
+  
 export default {
   name: 'NavBar',
   data() {
@@ -27,6 +32,8 @@ export default {
     };
   },
 };
+
+  
 </script>
 
 <style scoped>
