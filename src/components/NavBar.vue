@@ -45,6 +45,7 @@ export default {
 
   .nav-item {
     margin-right: 1rem;
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
   }
 
   .nav-link {
