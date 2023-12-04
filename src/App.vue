@@ -52,7 +52,8 @@ import WalletConnector from './components/WalletConnector.vue'
     }
   }
   footer {
-    
+    text-align: center;
+    color:white;
   }
   
 
