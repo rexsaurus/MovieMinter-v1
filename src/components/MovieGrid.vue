@@ -4,8 +4,8 @@
       <MovieSquare
         v-for="(movie, index) in movies"
         :key="index"
+        :imagePath="getImagePath(movie.segment)" 
         :isMint="movie.isMint"
-        :movieSegment="movie.segment"
         @click="openSceneDetail(movie)"
       />
     </div>
@@ -19,36 +19,38 @@
 </template>
 
 <script>
-import MovieSquare from './MovieSquare.vue';
-import SceneDetail from './SceneDetail.vue';
+  import MovieSquare from './MovieSquare.vue';
+  import SceneDetail from './SceneDetail.vue';
 
-export default {
-  components: {
-    MovieSquare,
-    SceneDetail
-  },
-  data() {
-    return {
-      movies: [
-        { isMint: true, segment: 'scene_1' },
-        { isMint: false, segment: 'scene_2' },
-        { isMint: true, segment: 'scene_3' },
-        { isMint: false, segment: 'scene_4' },
-        { isMint: true, segment: 'scene_5' },
-        { isMint: false, segment: 'scene_6' }
-        // ...more movie objects
-      ],
-      isSceneDetailVisible: false,
-      selectedScene: null,
-    };
-  },
-  methods: {
-    openSceneDetail(movie) {
-      this.selectedScene = movie;
-      this.isSceneDetailVisible = true;
-    }
-  }
-};
+  export default {
+    components: {
+      MovieSquare,
+      SceneDetail
+    },
+    data() {
+      return {
+        movies: [
+          { isMint: true, segment: 'scene_1' },
+          { isMint: false, segment: 'scene_2' },
+          { isMint: true, segment: 'scene_3' },
+          { isMint: false, segment: 'scene_4' },
+          { isMint: true, segment: 'scene_5' },
+          { isMint: false, segment: 'scene_6' }
+        ],
+        isSceneDetailVisible: false,
+        selectedScene: null,
+      };
+    },
+    methods: {
+      openSceneDetail(movie) {
+        this.selectedScene = movie;
+        this.isSceneDetailVisible = true;
+      },
+      getImagePath(segment) {
+        return `src/components/assets/${segment}.png`;
+      },
+    },
+  };
 </script>
 
 <style scoped>
