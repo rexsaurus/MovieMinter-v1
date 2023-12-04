@@ -13,10 +13,9 @@
 </template>
 
 <script>
-  import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
-  import { Web3Modal } from '@web3modal/html';
-  import { configureChains, createConfig } from '@wagmi/core';
-  import { arbitrum, mainnet, polygon } from 'viem/chains';
+
+  import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/vue'
+  import { mainnet, arbitrum } from 'viem/chains'
   
 export default {
   name: 'NavBar',
@@ -33,6 +32,23 @@ export default {
   },
 };
 
+
+  // 1. Get projectId at https://cloud.walletconnect.com
+  const projectId = 'YOUR_PROJECT_ID'
+
+  // 2. Create wagmiConfig
+  const metadata = {
+    name: 'Web3Modal',
+    description: 'Web3Modal Example',
+    url: 'https://web3modal.com',
+    icons: ['https://avatars.githubusercontent.com/u/37784886']
+  }
+
+  const chains = [mainnet, arbitrum]
+  const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata })
+
+  // 3. Create modal
+  createWeb3Modal({ wagmiConfig, projectId, chains })
   
 </script>
 
