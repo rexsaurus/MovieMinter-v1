@@ -49,11 +49,13 @@ export default {
 
   .nav-link {
     text-decoration: none;
-    color: white; /* Changed color to white */
+    color: white;
     padding: 0.5rem 1rem;
-    border: 1px solid white; /* Added border around the text */
+    border: 1px solid white;
     transition: color 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping */
   }
+
 
   .nav-link:hover {
     color: #42b983;
