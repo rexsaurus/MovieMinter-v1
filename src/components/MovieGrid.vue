@@ -22,6 +22,20 @@ export default {
       movies: [
         { isMint: true, segment: 'segment1.mp4' },
         { isMint: false, segment: 'segment2.mp4' },
+        { isMint: true, segment: 'segment1.mp4' },
+        { isMint: false, segment: 'segment2.mp4' },
+        { isMint: true, segment: 'segment1.mp4' },
+        { isMint: false, segment: 'segment2.mp4' },
+        { isMint: true, segment: 'segment1.mp4' },
+        { isMint: false, segment: 'segment2.mp4' },
+        { isMint: true, segment: 'segment1.mp4' },
+        { isMint: false, segment: 'segment2.mp4' },
+        { isMint: true, segment: 'segment1.mp4' },
+        { isMint: false, segment: 'segment2.mp4' },
+        { isMint: true, segment: 'segment1.mp4' },
+        { isMint: false, segment: 'segment2.mp4' },
+        { isMint: true, segment: 'segment1.mp4' },
+        { isMint: false, segment: 'segment2.mp4' }
         // ...more movie objects
       ]
     };
@@ -30,11 +44,11 @@ export default {
 </script>
 
 <style scoped>
-.movie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-  justify-items: center;
-}
+  .movie-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 15px; /* 15px gap between items */
+    padding: 15px; /* Optional: padding around the grid */
+    width: 100%; /* Full width */
+  }
 </style>

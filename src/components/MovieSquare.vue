@@ -34,9 +34,14 @@ export default {
 </script>
 
 <style scoped>
+
 .movie-square {
-  /* styles for the square */
-}
+    background-color: #f0f0f0; /* Example background color */
+    padding-top: 25%; /* Height as a percentage of width */
+    position: relative;
+    width: 100%;
+  }
+
 .movie-square.mint:hover {
   /* styles for hovering over mint squares */
 }
