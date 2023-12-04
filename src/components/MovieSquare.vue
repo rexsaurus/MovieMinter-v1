@@ -10,6 +10,11 @@
     
     <!-- Conditionally render "MINT" text for isMint = false -->
     <div v-if="!isMint" class="mint-text">MINT</div>
+
+
+    <!-- Conditionally render "unavailable" text for isMint = true -->
+    <div v-if="isMint" class="unavailable-text">unavailable</div>
+    
   </div>
 </template>
 
@@ -90,4 +95,19 @@ export default {
 .movie-square:hover {
   border: 2px solid #42b983; /* Green border on hover */
 }
+
+  /* Style for the "unavailable" text */
+  .unavailable-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem; /* Adjust font size as needed */
+    color: #ffffff; /* Text color */
+    background-color: rgba(255, 0, 0, 0.3); /* Red background color with 30% opacity */
+  }
 </style>
