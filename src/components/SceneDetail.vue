@@ -99,19 +99,16 @@ export default {
   z-index: 1000; /* High z-index to overlay on top of other content */
 }
 
-.scene-detail-header {
-  padding: 0.5rem 1rem;
-  background-color: whitesmoke;
-  color: black; /* Set header text color to black */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  font-size: 1.5rem; /* Larger font size for the title */
-  font-weight: bold; /* Bold font weight for the title */
-  margin-left: 1rem; /* Space from the left edge */
-  color: black;
-}
+  .scene-detail-header {
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    background-color: whitesmoke; /* Background color of the header */
+    color: black; /* Color of the header title */
+    display: flex;
+    justify-content: space-between; /* Space out title and close button */
+    align-items: center; /* Vertically center the items in the header */
+    width: 100%; /* Header should span the full width of the container */
+    box-sizing: border-box;
+  }
   
 
   .scene-detail-header, .scene-content  {
