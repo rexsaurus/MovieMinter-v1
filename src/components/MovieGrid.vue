@@ -4,28 +4,32 @@
       <MovieSquare
         v-for="(movie, index) in movies"
         :key="index"
-        :imagePath="getImagePath(movie.segment)" 
+        :segment="movie.segment" 
         :isMint="movie.isMint"
         @squareClicked="openSceneDetail(movie)"
       />
     </div>
+    <button class="play-button" @click="loadMovieViewer">Play Movie</button>
     <div class="scene-detail-popup" v-if="isSceneDetailVisible">
       <SceneDetail
         :scene="selectedScene"
         @close="isSceneDetailVisible = false"
       />
     </div>
+    <MovieViewer v-if="isMovieViewerVisible" :movieClip="movieClipPath" @close="isMovieViewerVisible = false" />
   </div>
 </template>
 
 <script>
   import MovieSquare from './MovieSquare.vue';
   import SceneDetail from './SceneDetail.vue';
+  import MovieViewer from './MovieViewer.vue';
 
   export default {
     components: {
       MovieSquare,
-      SceneDetail
+      SceneDetail,
+      MovieViewer
     },
     data() {
       return {
@@ -38,18 +42,20 @@
           { isMint: false, segment: 'scene_6' , description: "Jealous rivals dispatch assassins to attempt to slay the hero."  },
           { isMint: true, segment: 'scene_7' , description: "A dragon is released by the witch king of a nearby kingdom after his attempts at assassination fail."  },
           { isMint: false, segment: 'scene_8' , description: "After slaying the dragon, the ninja finds a nest of eggs with a single surviving infant dragon, which he takes back to the queen."  }
-        ],
-        isSceneDetailVisible: false,
+        ],  isSceneDetailVisible: false,
         selectedScene: null,
+        isMovieViewerVisible: false,
+        movieClipPath: ''
       };
     },
     methods: {
       openSceneDetail(scene) {
-        this.selectedScene = { ...scene, imagePath: this.getImagePath(scene.segment) };
+        this.selectedScene = scene;
         this.isSceneDetailVisible = true;
       },
-      getImagePath(segment) {
-        return `src/components/assets/${segment}.png`;
+      loadMovieViewer() {
+        this.movieClipPath = `src/components/assets/scene_1_movie.mp4`; // Modify as needed
+        this.isMovieViewerVisible = true;
       },
     },
   };
@@ -69,13 +75,34 @@
     width: 100%;
   }
 
+  .play-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .scene-detail-popup {
     position: absolute;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent; /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  }
+
+  /* Media query for smaller screens */
+  @media (max-width: 600px) {
+    .movie-grid {
+      grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+    }
   }
 </style>

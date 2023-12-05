@@ -16,27 +16,37 @@
 <script>
 export default {
   props: {
-    imagePath: String, // Add a prop to accept the image path
+    segment: String, // Receive the segment name instead of the full image path
     isMint: {
       type: Boolean,
       default: false
     }
   },
+  computed: {
+    // Compute the image path by appending '_small' to the segment
+    imagePath() {
+      return `./src/components/assets/${this.segment}_small.png`; // Adjust the path as needed
+    }
+  },
   methods: {
     highlight() {
       // Logic to highlight the square
+      // Add your highlight logic here
     },
     unhighlight() {
       // Logic to unhighlight the square
+      // Add your unhighlight logic here
     },
     playMovieSegment() {
       if (!this.isMint) {
         // Logic to play movie segment
+        // Add logic to play the movie segment
       }
     }
   }
 }
 </script>
+
 
 <style scoped>
   .movie-square {
