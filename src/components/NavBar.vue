@@ -1,7 +1,7 @@
 <template>
   <nav>
     <ul class="nav-list">
-      <li class="nav-item" v-for="link in navLinks" :key="link.text">
+      <li class="nav-item" v-for="link in navLinks" :key="link.text" @click="handleNavClick(link)">
         <!-- Check if the link text is 'Connect' -->
         <template v-if="link.text === 'Connect'">
           <!-- Use the Web3Modal button component for the 'Connect' link -->
@@ -13,6 +13,8 @@
         </router-link>
       </li>
     </ul>
+    <!-- Popup Component -->
+    <popup-component v-if="showPopup" :title="popupTitle" :text="popupText" @close="showPopup = false"></popup-component>
   </nav>
 </template>
 
@@ -20,22 +22,37 @@
 
   import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/vue'
   import { mainnet, arbitrum } from 'viem/chains'
-  
-export default {
-  name: 'NavBar',
-  data() {
-    return {
-      navLinks: [
-        { text: 'How it works', to: '/how-it-works' },
-        { text: 'Script', to: '/script' },
-        { text: 'Director', to: '/director' },
-        { text: 'Prompt', to: '/prompt' },
-        { text: 'Connect', to: '/connect' },
-      ],
-    };
-  },
-};
+  import Popup from './Popup.vue'; // Import your popup component
 
+  export default {
+    name: 'NavBar',
+    components: {
+      'popup-component': Popup
+    },
+    data() {
+      return {
+        navLinks: [
+          { text: 'How it works', to: '/how-it-works', popupTitle: 'How It Works', popupText: 'Information about how it works...' },
+          { text: 'Script', to: '/script', popupTitle: 'Script', popupText: 'Details about the script...' },
+          { text: 'Director', to: '/director', popupTitle: 'Director', popupText: 'Director related information...' },
+          { text: 'Prompt', to: '/prompt', popupTitle: 'Prompt', popupText: 'Prompt related details...' },
+          { text: 'Connect', to: '/connect' }, // No popup for Connect
+        ],
+        showPopup: false,
+        popupTitle: '',
+        popupText: '',
+      };
+    },
+    methods: {
+      handleNavClick(link) {
+        if (link.text !== 'Connect') {
+          this.popupTitle = link.popupTitle;
+          this.popupText = link.popupText;
+          this.showPopup = true;
+        }
+      }
+    },
+  };
 
   // 1. Get projectId at https://cloud.walletconnect.com
   const projectId = 'YOUR_PROJECT_ID'

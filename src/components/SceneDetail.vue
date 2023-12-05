@@ -27,8 +27,6 @@
 <script>
 import Replicate from "replicate";
 
-  console.log(process.env.BASE_PATH);
-  console.log(process.env.REPLIT_TOKEN);
 export default {
   props: {
     scene: Object
