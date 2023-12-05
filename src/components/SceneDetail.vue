@@ -10,6 +10,7 @@
       </template>
       <template v-else-if="videoLoaded">
         <video ref="videoPlayer" :src="videoUrl" class="scene-thumbnail" controls></video>
+        <button class="play-button" @click="playMovie">Play</button>
         <button class="close-button" @click="closeForm">Close</button>
       </template>
       <template v-else>
@@ -18,7 +19,7 @@
           <p>{{ scene.description }}</p>
           <p>Est. Processing time: {{ scene.estProcessingTime }}</p>
         </div>
-        <button class="mint-button" @click="mintScene">Mint</button>
+        <button v-if="!videoLoaded" class="mint-button" @click="mintScene">Mint</button>
       </template>
     </div>
   </div>
@@ -26,80 +27,68 @@
 
 
 <script>
-import Replicate from "replicate";
-
-export default {
-  props: {
-    scene: Object
-  },
-  data() {
-    return {
-      isLoading: false,
-      videoUrl: null, // URL of the processed video
-      videoLoaded: false // Indicates if the video is loaded
-    };
-  },
-  methods: {
-    closeForm() {
-      this.$emit('close');
+  export default {
+    props: {
+      scene: Object
     },
-    async mintScene() {
-      this.isLoading = true;
+    data() {
+      return {
+        isLoading: false,
+        videoUrl: null,
+        videoLoaded: false
+      };
+    },
+    methods: {
+      closeForm() {
+        this.$emit('close');
+      },
+      async mintScene() {
+        this.isLoading = true;
 
-      // Set up Replicate API call
-      const replicate = new Replicate({
-        auth: process.env.REPLIT_TOKEN,
-      });
-
-      try {
-        const output = await replicate.run(
-          "stability-ai/stable-video-diffusion:49fa7a9e0b5ffcf1b8172438",
-          {
-            input: {
-              input_image: process.env.BASE_PATH + this.scene.segment
-              // Add other parameters as required
-            }
-          }
-        );
-
-        // Mock delay for the processing time
+        // Mimicking a delay for the minting process
         setTimeout(() => {
           this.isLoading = false;
           this.videoLoaded = true;
-          this.videoUrl = `path/to/your/assets/${this.scene.segment}_movie.mp4`; // Set the movie clip URL
-        }, 5000); // 5 seconds delay for loading
-      } catch (error) {
-        console.error("Error processing scene:", error);
-        this.isLoading = false;
-      }
-    },
-    viewVideo() {
-      if (this.videoUrl) {
-        // Open the video in a new tab or modal
-        window.open(this.videoUrl, '_blank');
+          this.videoUrl = `./src/components/assets/${this.scene.segment}_movie.mp4`;
+        }, 5000); // 5 seconds delay
+      },
+      playMovie() {
+        const videoPlayer = this.$refs.videoPlayer;
+        if (videoPlayer.paused) {
+          videoPlayer.play();
+        } else {
+          videoPlayer.pause();
+        }
       }
     }
-  }
-};
-</script>
+  };
+  </script>
+
 
 
 <style scoped>
-.scene-detail-container {
-  background-color: transparent; /* Adjust the alpha value for 70% opacity */
-  padding: 15% 15% 2rem; /* 15% on the sides and 2rem at the bottom */
-  box-sizing: border-box; /* Ensures padding is included in width calculation */
-  position: fixed; /* Full-screen overlay */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000; /* High z-index to overlay on top of other content */
-}
+  .scene-detail-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10%; /* Increased padding for margin around */
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .scene-detail-header, .scene-content  {
+    width: 80%; /* Adjusted for more space */
+    max-height: 70%; /* Adjusted for more vertical space */
+    overflow-y: auto; /* Scroll for overflow content */
+  }
+
 
   .scene-detail-header {
     padding: 0.5rem 1rem; /* Adjust padding as needed */
@@ -186,5 +175,9 @@ export default {
 
   .play-button {
     /* Add your styling here */
+  }
+
+  .mint-button, .play-button {
+    margin-bottom: 1rem; /* Added space below the buttons */
   }
 </style>
