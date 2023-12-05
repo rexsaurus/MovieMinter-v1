@@ -27,6 +27,8 @@
 <script>
 import Replicate from "replicate";
 
+  console.log(process.env.BASE_PATH);
+  console.log(process.env.REPLIT_TOKEN);
 export default {
   props: {
     scene: Object
@@ -55,7 +57,7 @@ export default {
           "stability-ai/stable-video-diffusion:3f0457e4619daac51203dedb472816fd4af51f3149fa7a9e0b5ffcf1b8172438",
           {
             input: {
-              input_image: this.scene.imagePath
+              input_image: process.env.BASE_PATH + this.scene.segment
               // Add other parameters as required
             }
           }
