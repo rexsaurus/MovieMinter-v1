@@ -4,48 +4,68 @@
     <h2>{{ movieTitle }}</h2>
     <div v-if="isLoading" class="loading-container">
       <img src="./src/components/assets/loading.gif" alt="Loading" class="loading-gif"/>
-      <p class="loading-text">Please wait ...</p>
+      <p class="loading-text">Loading clip {{ currentClipIndex + 1 }} of {{ movieSegments.length }}...</p>
     </div>
     <div v-else class="video-container">
-      <video ref="videoPlayer" :src="movieClipPath" class="video-player" controls></video>
+      <video ref="videoPlayer" :src="currentClipPath" class="video-player" @ended="onVideoEnded" controls></video>
       <button @click="playMovie" class="play-button">Play</button>
     </div>
   </div>
 </template>
 
-
 <script>
 export default {
   props: {
-    movieClipPath: String,
+    movieSegments: Array,
     movieTitle: String
   },
   data() {
     return {
-      isLoading: true // Assume loading at the start
+      isLoading: false,
+      currentClipIndex: 0,
+      videoPlayer: null
     };
   },
-  mounted() {
-    // Simulate a loading time
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 5000); // Adjust the time as needed
+  computed: {
+    currentClipPath() {
+      return `src/components/assets/${this.movieSegments[this.currentClipIndex]}_movie.mp4`;
+    }
   },
   methods: {
+    loadClip() {
+      this.isLoading = true;
+      // Simulate clip loading
+      setTimeout(() => {
+        this.isLoading = false;
+        this.playMovie();
+      }, 1000); // Adjust loading time as needed
+    },
     playMovie() {
-      const videoPlayer = this.$refs.videoPlayer;
-      if (videoPlayer.paused) {
-        videoPlayer.play();
-      } else {
-        videoPlayer.pause();
+      if (!this.videoPlayer) {
+        this.videoPlayer = this.$refs.videoPlayer;
+      }
+      this.videoPlayer.src = this.currentClipPath;
+      this.videoPlayer.play();
+    },
+    onVideoEnded() {
+      if (this.currentClipIndex < this.movieSegments.length - 1) {
+        this.currentClipIndex++;
+        this.loadClip(); // Load next clip
       }
     },
     closeViewer() {
       this.$emit('close');
     }
+  },
+  mounted() {
+    this.videoPlayer = this.$refs.videoPlayer;
+    this.loadClip(); // Load first clip
   }
 }
 </script>
+
+
+
 
 
 

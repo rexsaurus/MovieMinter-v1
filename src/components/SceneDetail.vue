@@ -11,7 +11,6 @@
       <template v-else-if="videoLoaded">
         <video ref="videoPlayer" :src="videoUrl" class="scene-thumbnail" controls></video>
         <button class="play-button" @click="playMovie">Play</button>
-        <button class="close-button" @click="closeForm">Close</button>
       </template>
       <template v-else>
         <img :src="`./src/components/assets/${scene.segment}.png`" class="scene-thumbnail" alt="Movie Scene" />

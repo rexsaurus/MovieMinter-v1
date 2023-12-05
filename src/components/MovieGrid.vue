@@ -16,7 +16,14 @@
         @close="isSceneDetailVisible = false"
       />
     </div>
-    <MovieViewer v-if="isMovieViewerVisible" :movieClip="movieClipPath" @close="isMovieViewerVisible = false" />
+
+    <!-- MovieViewer Component -->
+    <MovieViewer 
+      ref="movieViewer"
+      v-if="isMovieViewerVisible" 
+      :movieTitle="selectedMovieTitle"
+      @close="isMovieViewerVisible = false" 
+    />
   </div>
 </template>
 
@@ -54,9 +61,17 @@
         this.isSceneDetailVisible = true;
       },
       loadMovieViewer() {
-        this.movieClipPath = `src/components/assets/scene_1_movie.mp4`; // Modify as needed
-        this.isMovieViewerVisible = true;
-      },
+        this.isMovieViewerVisible = true; // This will render the MovieViewer
+
+        this.$nextTick(() => {
+          if (this.$refs.movieViewer) {
+            this.$refs.movieViewer.initializeMovieSegments(this.movies.map(movie => movie.segment));
+          } else {
+            console.error("MovieViewer is not yet available");
+          }
+        });
+      }
+,
     },
   };
 </script>
