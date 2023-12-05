@@ -32,10 +32,10 @@
     data() {
       return {
         navLinks: [
-          { text: 'How it works', to: '/how-it-works', popupTitle: 'How It Works', popupText: 'Information about how it works...' },
-          { text: 'Script', to: '/script', popupTitle: 'Script', popupText: 'Details about the script...' },
-          { text: 'Director', to: '/director', popupTitle: 'Director', popupText: 'Director related information...' },
-          { text: 'Prompt', to: '/prompt', popupTitle: 'Prompt', popupText: 'Prompt related details...' },
+          { text: 'How it works', to: '/how-it-works', popupTitle: 'How It Works', popupText: 'Movie Minter works by allowing users to donate their GPU to mint segments of a Generative AI movie. A director or artist submits a set of scenes, stills or prompts and the end user can volunteer to mint these segments using their GPU. As a reward, the user gets to own that clip, stored in their wallet as an NFT. When the final movie is assembled after all the pieces are minted, users who helped create the movie can get royalties whenever the full movie is viewed.' },
+          { text: 'Script', to: '/script', popupTitle: 'Script', popupText: 'This is an example script about a ninja who slays a dragon in a far away mythical kingdom of cherry blossom castles.' },
+          { text: 'Director', to: '/director', popupTitle: 'Director', popupText: 'Details about the director. For the purposes of this example, the director is Rex St. John.' },
+          { text: 'Prompt', to: '/prompt', popupTitle: 'Prompt', popupText: 'Details about the prompts being used as the background to each image will go here. These might include details about LoRas, model checkpoints and negative prompts which are used per scene. A movie might have a cinematographer who sets all these.' },
           { text: 'Connect', to: '/connect' }, // No popup for Connect
         ],
         showPopup: false,

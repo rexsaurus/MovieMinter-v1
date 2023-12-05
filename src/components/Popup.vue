@@ -1,7 +1,7 @@
 <template>
   <div class="popup-container">
     <div class="popup-header">
-      <h2>{{ title }}</h2>
+      <h2 class="popup-title">{{ title }}</h2>
       <button class="close-button" @click="closePopup">X</button>
     </div>
     <div class="popup-content">
@@ -9,6 +9,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   props: {
@@ -37,22 +38,38 @@ export default {
   border-radius: 8px; /* Rounded corners */
 }
 
-.popup-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
+  .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure the header spans the full width */
+    margin-bottom: 1rem; /* Space between header and content */
+  }
 
-.close-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 1rem;
-}
+  .popup-title {
+    font-size: 1.5rem; /* Larger font size for the title */
+    font-weight: bold; /* Bold font weight for the title */
+    margin-left: 1rem; /* Space from the left edge */
+    color: black;
+  }
 
-.popup-content p {
-  color: black;
-  text-align: left;
-}
+  .close-button {
+    font-size: 1.5rem; /* Larger font size for the close button */
+    cursor: pointer; /* Pointer on hover */
+    margin-right: 1rem; /* Space from the right edge */
+    background: none;
+    border: none;
+  }
+
+  .close-button:hover {
+    opacity: 0.7; /* Slight transparency on hover */
+  }
+
+  .popup-content p {
+    font-size: 1rem; /* Larger font size for content */
+    font-weight: bold; /* Bold font weight for content */
+    color: black; /* Text color */
+    text-align: justify; /* Justify text alignment */
+    margin: 0 1rem; /* Horizontal padding for the content */
+  }
 </style>
