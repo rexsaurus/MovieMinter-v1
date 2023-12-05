@@ -5,19 +5,21 @@
       <button class="close-button" @click="closeForm">X</button>
     </div>
     <div class="scene-content">
-      <img :src="scene.imagePath" class="scene-thumbnail" alt="Movie Scene" />
-      <div class="scene-description">
-        <p>{{ scene.description }}</p>
-        <p>Est. Processing time: {{ scene.estProcessingTime }}</p>
-      </div>
-      <div v-if="videoLoaded" class="scene-video">
-        <button v-if="videoUrl" class="play-button" @click="viewVideo">Play Video</button>
-      </div>
-      <div v-if="isLoading" class="loading-indicator">Processing...</div>
-      <div v-else>
-        <!-- existing code -->
+      <template v-if="isLoading">
+        <div class="loading-indicator">Processing...</div>
+      </template>
+      <template v-else-if="videoLoaded">
+        <video ref="videoPlayer" :src="videoUrl" class="scene-thumbnail" controls></video>
+        <button class="close-button" @click="closeForm">Close</button>
+      </template>
+      <template v-else>
+        <img :src="`./src/components/assets/${scene.segment}.png`" class="scene-thumbnail" alt="Movie Scene" />
+        <div class="scene-description">
+          <p>{{ scene.description }}</p>
+          <p>Est. Processing time: {{ scene.estProcessingTime }}</p>
+        </div>
         <button class="mint-button" @click="mintScene">Mint</button>
-      </div>
+      </template>
     </div>
   </div>
 </template>
@@ -51,7 +53,7 @@ export default {
 
       try {
         const output = await replicate.run(
-          "stability-ai/stable-video-diffusion:3f0457e4619daac51203dedb472816fd4af51f3149fa7a9e0b5ffcf1b8172438",
+          "stability-ai/stable-video-diffusion:49fa7a9e0b5ffcf1b8172438",
           {
             input: {
               input_image: process.env.BASE_PATH + this.scene.segment
@@ -60,13 +62,14 @@ export default {
           }
         );
 
-        // Store the video URL and indicate the video is loaded
-        this.videoUrl = output;
-        this.videoLoaded = true;
-
+        // Mock delay for the processing time
+        setTimeout(() => {
+          this.isLoading = false;
+          this.videoLoaded = true;
+          this.videoUrl = `path/to/your/assets/${this.scene.segment}_movie.mp4`; // Set the movie clip URL
+        }, 5000); // 5 seconds delay for loading
       } catch (error) {
         console.error("Error processing scene:", error);
-      } finally {
         this.isLoading = false;
       }
     },
@@ -79,7 +82,6 @@ export default {
   }
 };
 </script>
-
 
 
 <style scoped>
