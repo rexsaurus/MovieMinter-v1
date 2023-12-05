@@ -41,13 +41,13 @@
     data() {
       return {
         movies: [
-          { isMint: true, segment: 'scene_1', description: "The beginning of the movie, the ninja discovers a hidden castle in the mountains." },
+          { isMint: false, segment: 'scene_1', description: "The beginning of the movie, the ninja discovers a hidden castle in the mountains." },
           { isMint: false, segment: 'scene_2', description: "After being captured by her guards, the ninja is brought before the queen of the realm." },
-          { isMint: true, segment: 'scene_3', description: "Outraged by his tresspassing, the queen commands the ninja to battle an ancient creature from beneath the castle who has been plauging the kingdom for years."  },
+          { isMint: false, segment: 'scene_3', description: "Outraged by his tresspassing, the queen commands the ninja to battle an ancient creature from beneath the castle who has been plauging the kingdom for years."  },
           { isMint: false, segment: 'scene_4' , description: "After defeating the monster, the hero is crowned with the highest honor of the realm."  },
-          { isMint: true, segment: 'scene_5', description: "The ninja is married to the queen of the kingdom as foretold by an ancient prophecy."  },
+          { isMint: false, segment: 'scene_5', description: "The ninja is married to the queen of the kingdom as foretold by an ancient prophecy."  },
           { isMint: false, segment: 'scene_6' , description: "Jealous rivals dispatch assassins to attempt to slay the hero."  },
-          { isMint: true, segment: 'scene_7' , description: "A dragon is released by the witch king of a nearby kingdom after his attempts at assassination fail."  },
+          { isMint: false, segment: 'scene_7' , description: "A dragon is released by the witch king of a nearby kingdom after his attempts at assassination fail."  },
           { isMint: false, segment: 'scene_8' , description: "After slaying the dragon, the ninja finds a nest of eggs with a single surviving infant dragon, which he takes back to the queen."  }
         ],  isSceneDetailVisible: false,
         selectedScene: null,
