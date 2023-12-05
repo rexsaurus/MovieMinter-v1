@@ -75,52 +75,50 @@
 
 <style scoped>
   header {
-    /* Assuming you have a header tag */
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+      /* Assuming you have a header tag */
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
   }
 
-
   .nav-list {
-    display: flex; /* Establishes a flex container */
-    align-items: center; /* Vertically centers the flex items (the <li> elements) within the container */
-    justify-content: space-around; 
-    
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    flex-grow: 1; /* Added to push the logo and nav items to opposite ends */
-    justify-content: flex-end; /* Align nav items to the right */
+      display: flex; /* Establishes a flex container */
+      flex-wrap: wrap; /* Allows items to wrap onto multiple lines */
+      align-items: center; /* Vertically centers the flex items (the <li> elements) within the container */
+      justify-content: space-around;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-grow: 1; /* Added to push the logo and nav items to opposite ends */
+      justify-content: flex-end; /* Align nav items to the right */
   }
 
   .nav-item {
-    margin-right: 1rem;
-    cursor: pointer; /* Changes the cursor to a pointer on hover */
+      margin-right: 1rem; /* Adjust as necessary for spacing */
+      cursor: pointer; /* Changes the cursor to a pointer on hover */
   }
 
   .nav-link {
-    text-decoration: none;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: 1px solid white;
-    transition: color 0.3s ease;
-    white-space: nowrap; /* Prevent text wrapping */
+      text-decoration: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: 1px solid white;
+      transition: color 0.3s ease;
+      white-space: nowrap; /* Prevent text wrapping */
   }
 
-
   .nav-link:hover {
-    color: #42b983;
-    border-color: #42b983; /* Change border color on hover */
+      color: #42b983;
+      border-color: #42b983; /* Change border color on hover */
   }
 
   .connect-button {
-    border: none;
+      border: none;
   }
 
   /* Hover state for the connect button */
   .connect-button:hover {
+      /* Define styles for hover state here */
   }
 
 </style>
