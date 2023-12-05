@@ -7,7 +7,6 @@
     <div class="scene-content">
       <img :src="scene.imagePath" class="scene-thumbnail" alt="Movie Scene" />
       <div class="scene-description">
-        <p>In this scene, the character</p>
         <p>{{ scene.description }}</p>
         <p>Est. Processing time: {{ scene.estProcessingTime }}</p>
       </div>
@@ -108,19 +107,29 @@ export default {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+  font-size: 1.5rem; /* Larger font size for the title */
+  font-weight: bold; /* Bold font weight for the title */
+  margin-left: 1rem; /* Space from the left edge */
+  color: black;
 }
+  
 
   .scene-detail-header, .scene-content  {
     width: 70%;
   }
 
-.close-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-}
+  .close-button {
+    font-size: 1.5rem; /* Larger font size for the close button */
+    cursor: pointer; /* Pointer on hover */
+    margin-right: 1rem; /* Space from the right edge */
+    background: none;
+    border: none;
+  }
 
+  .close-button:hover {
+    opacity: 0.7; /* Slight transparency on hover */
+  }
+  
 .scene-content {
   display: flex;
   flex-direction: column;

@@ -44,8 +44,8 @@
       };
     },
     methods: {
-      openSceneDetail(movie) {
-        this.selectedScene = { movie, imagePath: this.getImagePath(movie.segment) };
+      openSceneDetail(scene) {
+        this.selectedScene = { ...scene, imagePath: this.getImagePath(scene.segment) };
         this.isSceneDetailVisible = true;
       },
       getImagePath(segment) {
