@@ -16,13 +16,14 @@
     <div v-else class="video-container">
       <video ref="videoPlayer" :src="currentClipPath" class="video-player" controls @loadeddata="onClipLoaded"></video>
       <div class="navigation-buttons">
-        <button @click="previousClip" class="nav-button">Previous</button>
+        <button v-if="currentClipIndex > 0" @click="previousClip" class="nav-button">Previous</button>
         <button @click="playMovie" class="play-button">Play</button>
-        <button @click="nextClip" class="nav-button">Next</button>
+        <button v-if="currentClipIndex < movieSegments.length - 1" @click="nextClip" class="nav-button">Next</button>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -91,20 +92,7 @@ export default {
 </script>
 
 <style scoped>
-.movie-viewer-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  max-width: 80%;
-  max-height: 80%;
-  overflow: auto;
-}
+
 
 h2 {
   margin-top: 0;
@@ -143,17 +131,33 @@ h2 {
     cursor: pointer;
   }
 
+  .movie-viewer-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    padding-top: 40px; /* Increased padding-top to make space for the close button */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+  }
 
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: black;
-}
+  .close-button {
+    position: absolute;
+    top: 10px; /* Position at the top within the container */
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+  }
+
 
 .loading-gif {
   display: block;
