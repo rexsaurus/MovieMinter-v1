@@ -1,11 +1,18 @@
 <template>
   <div class="movie-viewer-container">
+    <button class="close-button" @click="closeViewer">X</button>
     <h2>{{ movieTitle }}</h2>
-    <video ref="videoPlayer" :src="movieClipPath" class="video-player" controls></video>
-    <button @click="playMovie" class="play-button">Play</button>
-    <button @click="closeViewer" class="close-button">Close</button>
+    <div v-if="isLoading" class="loading-container">
+      <img src="./src/components/assets/loading.gif" alt="Loading" class="loading-gif"/>
+      <p class="loading-text">Please wait ...</p>
+    </div>
+    <div v-else class="video-container">
+      <video ref="videoPlayer" :src="movieClipPath" class="video-player" controls></video>
+      <button @click="playMovie" class="play-button">Play</button>
+    </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -15,8 +22,14 @@ export default {
   },
   data() {
     return {
-      // any additional data properties
+      isLoading: true // Assume loading at the start
     };
+  },
+  mounted() {
+    // Simulate a loading time
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 5000); // Adjust the time as needed
   },
   methods: {
     playMovie() {
@@ -33,6 +46,8 @@ export default {
   }
 }
 </script>
+
+
 
 <style scoped>
 .movie-viewer-container {
@@ -60,9 +75,11 @@ h2 {
   max-height: 500px;
 }
 
-.play-button, .close-button {
+.play-button {
   margin-top: 10px;
   padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
   border: none;
   border-radius: 5px;
   font-size: 16px;
@@ -72,13 +89,38 @@ h2 {
   margin-right: auto;
 }
 
-.play-button {
-  background-color: #4CAF50;
-  color: white;
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
 }
 
-.close-button {
-  background-color: #f44336;
-  color: white;
+.loading-gif {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
 }
+
+.loading-container, .video-container {
+  display: none;
+}
+
+.loading-container {
+  display: block;
+}
+
+  .loading-text {
+    color: black; /* Ensuring the text is visible */
+    text-align: center;
+    margin-top: 10px;
+  }
+
 </style>
+
