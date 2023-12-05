@@ -19,10 +19,10 @@
 
     <!-- MovieViewer Component -->
     <MovieViewer 
-      ref="movieViewer"
-      v-if="isMovieViewerVisible" 
+      v-if="isMovieViewerVisible"
+      :movieSegments="movies.map(movie => movie.segment)"
       :movieTitle="selectedMovieTitle"
-      @close="isMovieViewerVisible = false" 
+      @close="isMovieViewerVisible = false"
     />
   </div>
 </template>

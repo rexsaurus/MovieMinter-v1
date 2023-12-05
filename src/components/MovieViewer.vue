@@ -1,14 +1,25 @@
 <template>
   <div class="movie-viewer-container">
+    <!-- Close button -->
     <button class="close-button" @click="closeViewer">X</button>
+
+    <!-- Movie title -->
     <h2>{{ movieTitle }}</h2>
+
+    <!-- Loading indicator -->
     <div v-if="isLoading" class="loading-container">
       <img src="./src/components/assets/loading.gif" alt="Loading" class="loading-gif"/>
       <p class="loading-text">Loading clip {{ currentClipIndex + 1 }} of {{ movieSegments.length }}...</p>
     </div>
+
+    <!-- Video container -->
     <div v-else class="video-container">
-      <video ref="videoPlayer" :src="currentClipPath" class="video-player" @ended="onVideoEnded" controls></video>
-      <button @click="playMovie" class="play-button">Play</button>
+      <video ref="videoPlayer" :src="currentClipPath" class="video-player" controls @loadeddata="onClipLoaded"></video>
+      <div class="navigation-buttons">
+        <button @click="previousClip" class="nav-button">Previous</button>
+        <button @click="playMovie" class="play-button">Play</button>
+        <button @click="nextClip" class="nav-button">Next</button>
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +64,21 @@ export default {
         this.loadClip(); // Load next clip
       }
     },
+    nextClip() {
+      if (this.currentClipIndex < this.movieSegments.length - 1) {
+        this.currentClipIndex++;
+        this.loadClip();
+      }
+    },
+    previousClip() {
+      if (this.currentClipIndex > 0) {
+        this.currentClipIndex--;
+        this.loadClip();
+      }
+    },
+    onClipLoaded() {
+      this.isLoading = false;
+    },
     closeViewer() {
       this.$emit('close');
     }
@@ -63,11 +89,6 @@ export default {
   }
 }
 </script>
-
-
-
-
-
 
 <style scoped>
 .movie-viewer-container {
@@ -109,6 +130,16 @@ h2 {
   margin-right: auto;
 }
 
+.nav-button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .close-button {
   position: absolute;
   top: 10px;
@@ -124,23 +155,8 @@ h2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50px; /* Adjust as needed */
-  height: 50px; /* Adjust as needed */
+  width: 50px;
 }
+  </style>
 
-.loading-container, .video-container {
-  display: none;
-}
-
-.loading-container {
-  display: block;
-}
-
-  .loading-text {
-    color: black; /* Ensuring the text is visible */
-    text-align: center;
-    margin-top: 10px;
-  }
-
-</style>
-
+  
