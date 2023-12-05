@@ -49,7 +49,7 @@
           this.isLoading = false;
           this.videoLoaded = true;
           this.videoUrl = `./src/components/assets/${this.scene.segment}_movie.mp4`;
-        }, 5000); // 5 seconds delay
+        }, 0); // 5 seconds delay
       },
       playMovie() {
         const videoPlayer = this.$refs.videoPlayer;

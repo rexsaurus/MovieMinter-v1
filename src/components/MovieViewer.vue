@@ -8,7 +8,7 @@
 
     <!-- Loading indicator -->
     <div v-if="isLoading" class="loading-container">
-      <img src="./src/components/assets/loading.gif" alt="Loading" class="loading-gif"/>
+      <img src="./assets/loading.gif" alt="Loading" class="loading-gif"/>
       <p class="loading-text">Loading clip {{ currentClipIndex + 1 }} of {{ movieSegments.length }}...</p>
     </div>
 
@@ -115,30 +115,34 @@ h2 {
   width: 100%;
   max-height: 500px;
 }
+  .navigation-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
 
-.play-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+  .nav-button {
+    padding: 5px 10px;
+    background-color: orange; /* Updated color for navigation buttons */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
 
-.nav-button {
-  padding: 5px 10px;
-  margin: 0 5px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+  .play-button {
+    padding: 5px 10px;
+    background-color: #4CAF50; /* Green color for play button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
 
 .close-button {
   position: absolute;
