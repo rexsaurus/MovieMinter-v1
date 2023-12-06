@@ -80,22 +80,18 @@
       justify-content: flex-start;
       align-items: center;
   }
-
   .nav-list {
-      display: flex; /* Establishes a flex container */
-      flex-wrap: wrap; /* Allows items to wrap onto multiple lines */
-      align-items: center; /* Vertically centers the flex items (the <li> elements) within the container */
-      justify-content: space-around;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      flex-grow: 1; /* Added to push the logo and nav items to opposite ends */
-      justify-content: flex-end; /* Align nav items to the right */
+    display: flex;
+    justify-content: space-between; /* This will space out the navbar items */
+    align-items: center; /* Aligns items vertically */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* Remove flex-grow: 1; since we are using space-between */
   }
 
   .nav-item {
-      margin-right: 1rem; /* Adjust as necessary for spacing */
-      cursor: pointer; /* Changes the cursor to a pointer on hover */
+    padding: 0.5rem 1rem; /* Provide padding for clickable area */
   }
 
   .nav-link {
@@ -119,6 +115,17 @@
   /* Hover state for the connect button */
   .connect-button:hover {
       /* Define styles for hover state here */
+  }
+
+  @media (max-width: 768px) {
+    .nav-list {
+      flex-direction: column; /* Stack items vertically */
+      align-items: center; /* Center items horizontally */
+    }
+
+    .nav-item {
+      margin-bottom: 0.5rem; /* Add space between stacked items */
+    }
   }
 
 </style>

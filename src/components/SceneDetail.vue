@@ -11,6 +11,7 @@
       <template v-else-if="videoLoaded">
         <video ref="videoPlayer" :src="videoUrl" class="scene-thumbnail" controls></video>
         <button class="play-button" @click="playMovie">Play</button>
+        <button class="add-to-wallet-button" @click="addToWalletAndClose">Add to Wallet</button>
       </template>
       <template v-else>
         <img :src="`./src/components/assets/${scene.segment}.png`" class="scene-thumbnail" alt="Movie Scene" />
@@ -24,44 +25,47 @@
   </div>
 </template>
 
-
 <script>
-  export default {
-    props: {
-      scene: Object
+export default {
+  props: {
+    scene: Object
+  },
+  data() {
+    return {
+      isLoading: false,
+      videoUrl: null,
+      videoLoaded: false
+    };
+  },
+  methods: {
+    closeForm() {
+      this.$emit('close');
     },
-    data() {
-      return {
-        isLoading: false,
-        videoUrl: null,
-        videoLoaded: false
-      };
+    async mintScene() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+        this.videoLoaded = true;
+        this.videoUrl = `./src/components/assets/${this.scene.segment}_movie.mp4`;
+      }, 5000);
     },
-    methods: {
-      closeForm() {
-        this.$emit('close');
-      },
-      async mintScene() {
-        this.isLoading = true;
-
-        // Mimicking a delay for the minting process
-        setTimeout(() => {
-          this.isLoading = false;
-          this.videoLoaded = true;
-          this.videoUrl = `./src/components/assets/${this.scene.segment}_movie.mp4`;
-        }, 0); // 5 seconds delay
-      },
-      playMovie() {
-        const videoPlayer = this.$refs.videoPlayer;
-        if (videoPlayer.paused) {
-          videoPlayer.play();
-        } else {
-          videoPlayer.pause();
-        }
+    playMovie() {
+      const videoPlayer = this.$refs.videoPlayer;
+      if (videoPlayer.paused) {
+        videoPlayer.play();
+      } else {
+        videoPlayer.pause();
       }
+    },
+    addToWalletAndClose() {
+      // Logic to add the movie clip to the wallet
+
+      // Close the dialog
+      this.closeForm();
     }
-  };
-  </script>
+  }
+};
+</script>
 
 
 
@@ -178,5 +182,16 @@
 
   .mint-button, .play-button {
     margin-bottom: 1rem; /* Added space below the buttons */
+  }
+
+  .add-to-wallet-button {
+    padding: 0.5rem 1rem;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
   }
 </style>
